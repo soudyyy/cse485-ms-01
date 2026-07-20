@@ -15,4 +15,3 @@ $products = [
     ['sku' => 'MN-02', 'name' => 'LG UltraFine', 'category_id' => 3, 'price' => 8500000, 'qty' => 1],
     ['sku' => 'KB-03', 'name' => 'Leopold FC660M', 'category_id' => 1, 'price' => 2750000, 'qty' => 2],
 ];
-?>

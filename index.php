@@ -1,14 +1,10 @@
 <?php
 require_once __DIR__ . '/data.php';
 
-// tim ten danh muc theo id
-function tenDM(int $id, array $cats): string {
-    foreach ($cats as $c) {
-        if ($c['id'] === $id) {
-            return $c['name'];
-        }
-    }
-    return 'Khong xac dinh';
+// map category_id => ten danh muc
+$categoryMap = [];
+foreach ($categories as $c) {
+    $categoryMap[$c['id']] = $c['name'];
 }
 
 $tong = 0;
@@ -28,7 +24,6 @@ $tong = 0;
     <h2>Danh sach hang hoa</h2>
     <table border="1">
         <tr>
-            <th>STT</th>
             <th>Ma hang</th>
             <th>Phan loai</th>
             <th>Ten san pham</th>
@@ -36,17 +31,15 @@ $tong = 0;
             <th>So luong ton</th>
             <th>Thanh tien</th>
         </tr>
-        <?php 
-        $i = 1;
-        foreach ($products as $p): 
+        <?php foreach ($products as $p): 
             $tt = $p['price'] * $p['qty'];
             $tong = $tong + $tt;
+            $tenDanhMuc = $categoryMap[$p['category_id']] ?? '—';
         ?>
         <tr>
-            <td><?php echo $i++; ?></td>
-            <td><?php echo htmlspecialchars($p['sku']); ?></td>
-            <td><?php echo tenDM($p['category_id'], $categories); ?></td>
-            <td><?php echo htmlspecialchars($p['name']); ?></td>
+            <td><?php echo htmlspecialchars($p['sku'], ENT_QUOTES, 'UTF-8'); ?></td>
+            <td><?php echo htmlspecialchars($tenDanhMuc, ENT_QUOTES, 'UTF-8'); ?></td>
+            <td><?php echo htmlspecialchars($p['name'], ENT_QUOTES, 'UTF-8'); ?></td>
             <td><?php echo $p['price']; ?></td>
             <td><?php echo $p['qty']; ?></td>
             <td><?php echo $tt; ?></td>
