@@ -1,8 +1,8 @@
 <?php
 require_once __DIR__ . '/data.php';
 
-// Lay ten danh muc theo id
-function layTenDanhMuc(int $id, array $cats): string {
+// tim ten danh muc theo id
+function tenDM(int $id, array $cats): string {
     foreach ($cats as $c) {
         if ($c['id'] === $id) {
             return $c['name'];
@@ -14,7 +14,7 @@ function layTenDanhMuc(int $id, array $cats): string {
 $tong = 0;
 ?>
 <!DOCTYPE html>
-<html lang="vi">
+<html>
 <head>
     <meta charset="UTF-8">
     <title>MiniShop — Catalog (Buoi 1)</title>
@@ -44,9 +44,9 @@ $tong = 0;
         ?>
         <tr>
             <td><?php echo $i++; ?></td>
-            <td><?php echo htmlspecialchars($p['sku'], ENT_QUOTES, 'UTF-8'); ?></td>
-            <td><?php echo layTenDanhMuc($p['category_id'], $categories); ?></td>
-            <td><?php echo htmlspecialchars($p['name'], ENT_QUOTES, 'UTF-8'); ?></td>
+            <td><?php echo htmlspecialchars($p['sku']); ?></td>
+            <td><?php echo tenDM($p['category_id'], $categories); ?></td>
+            <td><?php echo htmlspecialchars($p['name']); ?></td>
             <td><?php echo $p['price']; ?></td>
             <td><?php echo $p['qty']; ?></td>
             <td><?php echo $tt; ?></td>
@@ -57,4 +57,8 @@ $tong = 0;
     <p>So san pham = <?php echo count($products); ?></p>
 
     <h2>Debug</h2>
-    
+    <pre><?php var_dump($products); ?></pre>
+</body>
+</html>
+
+<!-- MS_EXPECT product_count=8 inventory_value=41380000 -->
