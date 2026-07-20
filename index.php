@@ -1,10 +1,10 @@
 <?php
-require 'data.php';
+require_once __DIR__ . '/data.php';
 
 // tim ten danh muc theo id
 function tenDM(int $id, array $cats): string {
     foreach ($cats as $c) {
-        if ($c['id'] == $id) {
+        if ($c['id'] === $id) {
             return $c['name'];
         }
     }
@@ -17,7 +17,7 @@ $tong = 0;
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>Catalog - <?php echo date('Y'); ?></title>
+    <title>MiniShop — Catalog (Buoi 1)</title>
     <style>
         table { border: 1px solid black; border-collapse: collapse; }
         th, td { padding: 5px; border: 1px solid black; }
@@ -53,11 +53,11 @@ $tong = 0;
         </tr>
         <?php endforeach; ?>
     </table>
-    <p>Tong cong: <?php echo $tong; ?> VND</p>
-    <p>Co tat ca <?php echo count($products); ?> mat hang</p>
+    <p>Tong gia tri kho = <?php echo $tong; ?></p>
+    <p>So san pham = <?php echo count($products); ?></p>
 
     <h2>Debug</h2>
-    <pre><?php print_r($products); ?></pre>
+    <pre><?php var_dump($products); ?></pre>
 </body>
 </html>
 
